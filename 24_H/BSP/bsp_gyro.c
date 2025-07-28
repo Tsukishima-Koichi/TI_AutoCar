@@ -124,8 +124,8 @@ float Gyro_GetError(float Target_Angle)
 
 uint8_t Gyro_Angle_PID_Work(float Target_Angle)
 {
-    // PID_AnglePID(&Gyro_PID, Gyro_GetError(Target_Angle));
-    PID_PositionalPID(&Gyro_PID, Target_Angle, Gyro_Data.yaw);
+    PID_AnglePID(&Gyro_PID, Gyro_GetError(Target_Angle));
+    // PID_PositionalPID(&Gyro_PID, Target_Angle, Gyro_Data.yaw);
     if (Gyro_PID.preError > -0.8 && Gyro_PID.preError < 0.8)
         return 1;
 

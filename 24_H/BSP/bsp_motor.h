@@ -5,6 +5,7 @@
 #include "bsp_pid.h"
 
 #define ABS(a)      (a>0 ? a:(-a))
+#define ENCODER_FILTER_MAX          (4)
 
 extern int32_t Motor_Target;
 #define MOTOR_TARGET_SPEED      (5)
@@ -21,6 +22,11 @@ extern PID Motor_PID;
 extern int32_t PWMA, PWMB;
 extern int32_t EncoderA_Cnt, EncoderB_Cnt;
 
+//对外接口
+extern int16_t EncoderA_Data;
+extern int16_t EncoderB_Data;
+
+
 void Motor_Init(void);
 void Set_PWM(int pwma,int pwmb);
 void Motor_SetSpeed(void);
@@ -30,5 +36,6 @@ void Motor_PID_Init(void);
 void Motor_Velocity_PID_Work(void);
 
 void Encoder_GetCnt(void);
+void Encoder_SpeedRead(void);
 
 #endif

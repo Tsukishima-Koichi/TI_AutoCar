@@ -105,6 +105,7 @@ void TIMER_0_INST_IRQHandler(void)  //5ms
 	if (DL_TimerA_getPendingInterrupt(TIMER_0_INST) == DL_TIMER_IIDX_ZERO)
 	{
         Encoder_GetCnt();
+        Encoder_SpeedRead();
         Timer0_Flag = 1;
 	}
 }

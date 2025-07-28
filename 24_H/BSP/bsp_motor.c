@@ -79,10 +79,10 @@ void Motor_PID_Init(void)
 
 void Motor_Velocity_PID_Work(void)
 {
-    PID_IncrementalPID(&MotorA_PID, Motor_Target, EncoderA_Cnt);
-    PID_IncrementalPID(&MotorB_PID, Motor_Target, EncoderB_Cnt);
-    PWMA = MotorA_PID.ut;
-    PWMB = MotorB_PID.ut;
+    PID_IncrementalPID(&MotorA_PID, Motor_Target, EncoderA_Data);
+    PID_IncrementalPID(&MotorB_PID, Motor_Target, EncoderB_Data);
+    PWMA += MotorA_PID.ut;
+    PWMB += MotorB_PID.ut;
 }
 
 
@@ -148,3 +148,46 @@ void Encoder_GetCnt(void)
     Get_Encoder_CountB = 0;
 }
 
+//------------------------------------------------------------
+//状态机
+uint8_t Encoder_readFinishStatus = 0;
+
+//------------------------------基础数据------------------------------
+//数据
+int16_t EncoderA_DataRead = 0;                        //电机1采集到的数据
+int16_t EncoderB_DataRead = 0;                        //电机2采集到的数据
+int16_t Encoder_leftFilter[ENCODER_FILTER_MAX + 1];   //左轮滤波队列缓冲区
+int16_t Encoder_rightFilter[ENCODER_FILTER_MAX + 1];  //右轮滤波队列缓冲区
+int16_t Encoder_dataPointer = 0;                      //做一个指针,做个循环队列
+int16_t EncoderA_Data = 0;                            //电机1滤波后的数据
+int16_t EncoderB_Data = 0;                            //电机2滤波后的数据
+//------------------------------
+//数据滤波时候的权重
+float Encoder_filterWeight[ENCODER_FILTER_MAX] = {0.8, 0.1, 0.06, 0.04};
+
+
+/**
+ * @brief   编码器读取一次数据并进行滤波
+ * @return  NULL
+ */
+void Encoder_SpeedRead(void) {
+    Encoder_readFinishStatus = 0;
+    //数据采集的工作
+    EncoderA_DataRead = EncoderA_Cnt;
+    EncoderB_DataRead = EncoderB_Cnt;
+    //这里是做编码器的矫正的问题 ->  否则会显示负数据(很怪)
+    EncoderA_Data = 0;
+    EncoderB_Data = 0;
+    //进行一个滑动窗口的滤波
+    Encoder_leftFilter[Encoder_dataPointer] = EncoderA_DataRead;
+    Encoder_rightFilter[Encoder_dataPointer] = EncoderB_DataRead;
+    for (int i = 0; i < ENCODER_FILTER_MAX; ++i) {
+        int index = Encoder_dataPointer - i;
+        if (index < 0)
+            index += ENCODER_FILTER_MAX;
+        EncoderA_Data += Encoder_leftFilter[index] * Encoder_filterWeight[i];
+        EncoderB_Data += Encoder_rightFilter[index] * Encoder_filterWeight[i];
+    }
+    Encoder_dataPointer = (Encoder_dataPointer + 1) % ENCODER_FILTER_MAX;
+    Encoder_readFinishStatus = 1;
+}
