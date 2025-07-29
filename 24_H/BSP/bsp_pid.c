@@ -86,7 +86,7 @@ void PID_IncrementalPID(PID *p, float target, float cur)
 {
     int error = target - cur;
     // 数据进行增加
-    p->ut += p->kP * (error - p->preError) + p->kI * error + p->kD * (error - 2 * p->preError + p->preError);
+    p->ut += p->kP * (error - p->preError) + p->kI * error + p->kD * (error - 2 * p->preError + p->ppreError);
     // 进行修正限幅
     p->ut = p->ut > p->utLimit ? p->utLimit : p->ut;
     p->ut = p->ut < -p->utLimit ? -p->utLimit : p->ut;

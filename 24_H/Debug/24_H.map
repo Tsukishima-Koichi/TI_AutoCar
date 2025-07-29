@@ -1,7 +1,7 @@
 ******************************************************************************
             TI ARM Clang Linker PC v4.0.3                      
 ******************************************************************************
->> Linked Sun Jul 27 22:46:36 2025
+>> Linked Tue Jul 29 20:13:15 2025
 
 OUTPUT FILE NAME:   <24_H.out>
 ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00003671
@@ -68,10 +68,11 @@ section   page    origin      length       input sections
                   00002138    000000b0     ti_msp_dl_config.o (.text.SYSCFG_DL_UART_GYRO_init)
                   000021e8    000000ac     bsp_gyro.o (.text.Gyro_Angle_PID_Work)
                   00002294    000000a8     bsp_gyro.o (.text.Gyro_YawZero)
-                  0000233c    000000a8     bsp_pid.o (.text.PID_IncrementalPID)
+                  0000233c    000000a6     bsp_pid.o (.text.PID_IncrementalPID)
+                  000023e2    00000002     startup_mspm0g350x_ticlang.o (.text.Default_Handler)
                   000023e4    000000a4     main.o (.text.main)
                   00002488    0000009a     libc.a : memcpy16.S.obj (.text:memcpy)
-                  00002522    00000002     startup_mspm0g350x_ticlang.o (.text.Default_Handler)
+                  00002522    00000002     libclang_rt.builtins.a : aeabi_div0.c.obj (.text.__aeabi_idiv0)
                   00002524    00000094     ti_msp_dl_config.o (.text.SYSCFG_DL_PWM_MOTOR_init)
                   000025b8    00000090     bsp_motor.o (.text.Motor_Velocity_PID_Work)
                   00002648    0000008c     libclang_rt.builtins.a : mulsf3.S.obj (.text.__mulsf3)
@@ -88,7 +89,7 @@ section   page    origin      length       input sections
                   00002b14    00000064     driverlib.a : dl_sysctl_mspm0g1x0x_g3x0x.o (.text.DL_SYSCTL_setHFCLKSourceHFXTParams)
                   00002b78    00000064     bsp_oled.o (.text.OLED_ReverseArea)
                   00002bdc    00000062     libclang_rt.builtins.a : aeabi_dcmp.S.obj (.text.__aeabi_dcmp)
-                  00002c3e    00000002                            : aeabi_div0.c.obj (.text.__aeabi_idiv0)
+                  00002c3e    00000002     --HOLE-- [fill = 0]
                   00002c40    00000062                            : aeabi_fcmp.S.obj (.text.__aeabi_fcmp)
                   00002ca2    00000062     libc.a : memset16.S.obj (.text:memset)
                   00002d04    00000060     ti_msp_dl_config.o (.text.SYSCFG_DL_UART_DEBUG_init)
@@ -269,12 +270,12 @@ MODULE SUMMARY
        bsp_gyro.o                     1044    0         128    
        bsp_track.o                    1116    0         48     
        bsp_menu.o                     552     136       2      
-       bsp_pid.o                      642     0         0      
+       bsp_pid.o                      640     0         0      
        bsp_iic.o                      608     0         0      
        bsp_key.o                      340     0         16     
        bsp_task.o                     184     0         0      
     +--+------------------------------+-------+---------+---------+
-       Total:                         8646    3003      1393   
+       Total:                         8644    3003      1393   
                                                                
     C:/ti/mspm0_sdk_2_05_01_00/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a
        dl_timer.o                     588     0         0      
@@ -332,7 +333,7 @@ MODULE SUMMARY
        Stack:                         0       0         512    
        Linker Generated:              0       81        0      
     +--+------------------------------+-------+---------+---------+
-       Grand Total:                   14162   3421      10640  
+       Grand Total:                   14160   3421      10640  
 
 
 LINKER GENERATED COPY TABLES
@@ -354,12 +355,12 @@ GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name
 
 address   name                                 
 -------   ----                                 
-00002523  ADC0_IRQHandler                      
-00002523  ADC1_IRQHandler                      
-00002523  AES_IRQHandler                       
+000023e3  ADC0_IRQHandler                      
+000023e3  ADC1_IRQHandler                      
+000023e3  AES_IRQHandler                       
 0000275c  C$$EXIT                              
-00002523  CANFD0_IRQHandler                    
-00002523  DAC0_IRQHandler                      
+000023e3  CANFD0_IRQHandler                    
+000023e3  DAC0_IRQHandler                      
 000037e9  DL_Common_delayCycles                
 00002f2d  DL_DMA_initChannel                   
 00001d4d  DL_SYSCTL_configSYSPLL               
@@ -375,8 +376,8 @@ address   name
 000030a9  DL_UART_init                         
 00003799  DL_UART_setClockConfig               
 000036bd  DL_UART_transmitDataBlocking         
-00002523  DMA_IRQHandler                       
-00002523  Default_Handler                      
+000023e3  DMA_IRQHandler                       
+000023e3  Default_Handler                      
 20202730  EncoderA_Cnt                         
 20202784  EncoderA_Data                        
 20202786  EncoderA_DataRead                    
@@ -390,7 +391,7 @@ address   name
 2020271c  Encoder_leftFilter                   
 2020277b  Encoder_readFinishStatus             
 20202726  Encoder_rightFilter                  
-00002523  GROUP0_IRQHandler                    
+000023e3  GROUP0_IRQHandler                    
 000026d5  GROUP1_IRQHandler                    
 20202738  Get_Encoder_CountA                   
 2020273c  Get_Encoder_CountB                   
@@ -402,9 +403,9 @@ address   name
 00003469  Gyro_PID_Init                        
 00002295  Gyro_YawZero                         
 0000275d  HOSTexit                             
-00002523  HardFault_Handler                    
-00002523  I2C0_IRQHandler                      
-00002523  I2C1_IRQHandler                      
+000023e3  HardFault_Handler                    
+000023e3  I2C0_IRQHandler                      
+000023e3  I2C1_IRQHandler                      
 00003205  IIC_Start                            
 00003581  IIC_Stop                             
 00002089  IIC_WaitAck                          
@@ -424,7 +425,7 @@ address   name
 0000317d  Motor_Stop                           
 2020277c  Motor_Target                         
 000025b9  Motor_Velocity_PID_Work              
-00002523  NMI_Handler                          
+000023e3  NMI_Handler                          
 00003e10  OLED_CF16x16                         
 20202000  OLED_DisplayBuf                      
 00004119  OLED_F6x8                            
@@ -444,12 +445,12 @@ address   name
 000030f1  PID_SetParameter                     
 20202740  PWMA                                 
 20202744  PWMB                                 
-00002523  PendSV_Handler                       
-00002523  RTC_IRQHandler                       
+000023e3  PendSV_Handler                       
+000023e3  RTC_IRQHandler                       
 00003813  Reset_Handler                        
-00002523  SPI0_IRQHandler                      
-00002523  SPI1_IRQHandler                      
-00002523  SVC_Handler                          
+000023e3  SPI0_IRQHandler                      
+000023e3  SPI1_IRQHandler                      
+000023e3  SVC_Handler                          
 00003781  SYSCFG_DL_DMA_GYRO_init              
 000037fd  SYSCFG_DL_DMA_init                   
 00001a85  SYSCFG_DL_GPIO_init                  
@@ -463,14 +464,14 @@ address   name
 00003011  SYSCFG_DL_init                       
 00002d65  SYSCFG_DL_initPower                  
 0000140d  Send_Byte                            
-00002523  SysTick_Handler                      
+000023e3  SysTick_Handler                      
 00003699  TIMA0_IRQHandler                     
 000035e9  TIMA1_IRQHandler                     
-00002523  TIMG0_IRQHandler                     
-00002523  TIMG12_IRQHandler                    
-00002523  TIMG6_IRQHandler                     
-00002523  TIMG7_IRQHandler                     
-00002523  TIMG8_IRQHandler                     
+000023e3  TIMG0_IRQHandler                     
+000023e3  TIMG12_IRQHandler                    
+000023e3  TIMG6_IRQHandler                     
+000023e3  TIMG7_IRQHandler                     
+000023e3  TIMG8_IRQHandler                     
 20202790  Task_Flag                            
 20202791  Timer0_Flag                          
 20202792  Timer1_Cnt                           
@@ -478,10 +479,10 @@ address   name
 000034d9  Track_PID_Init                       
 00003511  Track_Position_PID_Work              
 000004c9  Track_Scan                           
-00002523  UART0_IRQHandler                     
+000023e3  UART0_IRQHandler                     
 00000b19  UART1_IRQHandler                     
-00002523  UART2_IRQHandler                     
-00002523  UART3_IRQHandler                     
+000023e3  UART2_IRQHandler                     
+000023e3  UART3_IRQHandler                     
 20208000  __STACK_END                          
 00000200  __STACK_SIZE                         
 00002000  __SYSMEM_SIZE                        
@@ -530,7 +531,7 @@ ffffffff  __TI_prof_data_start
 00001e29  __aeabi_fsub                         
 00003645  __aeabi_i2d                          
 00003305  __aeabi_i2f                          
-00002c3f  __aeabi_idiv0                        
+00002523  __aeabi_idiv0                        
 000037dd  __aeabi_memclr                       
 000037dd  __aeabi_memclr4                      
 000037dd  __aeabi_memclr8                      
@@ -643,34 +644,35 @@ address   name
 000021e9  Gyro_Angle_PID_Work                  
 00002295  Gyro_YawZero                         
 0000233d  PID_IncrementalPID                   
+000023e3  ADC0_IRQHandler                      
+000023e3  ADC1_IRQHandler                      
+000023e3  AES_IRQHandler                       
+000023e3  CANFD0_IRQHandler                    
+000023e3  DAC0_IRQHandler                      
+000023e3  DMA_IRQHandler                       
+000023e3  Default_Handler                      
+000023e3  GROUP0_IRQHandler                    
+000023e3  HardFault_Handler                    
+000023e3  I2C0_IRQHandler                      
+000023e3  I2C1_IRQHandler                      
+000023e3  NMI_Handler                          
+000023e3  PendSV_Handler                       
+000023e3  RTC_IRQHandler                       
+000023e3  SPI0_IRQHandler                      
+000023e3  SPI1_IRQHandler                      
+000023e3  SVC_Handler                          
+000023e3  SysTick_Handler                      
+000023e3  TIMG0_IRQHandler                     
+000023e3  TIMG12_IRQHandler                    
+000023e3  TIMG6_IRQHandler                     
+000023e3  TIMG7_IRQHandler                     
+000023e3  TIMG8_IRQHandler                     
+000023e3  UART0_IRQHandler                     
+000023e3  UART2_IRQHandler                     
+000023e3  UART3_IRQHandler                     
 000023e5  main                                 
 00002489  memcpy                               
-00002523  ADC0_IRQHandler                      
-00002523  ADC1_IRQHandler                      
-00002523  AES_IRQHandler                       
-00002523  CANFD0_IRQHandler                    
-00002523  DAC0_IRQHandler                      
-00002523  DMA_IRQHandler                       
-00002523  Default_Handler                      
-00002523  GROUP0_IRQHandler                    
-00002523  HardFault_Handler                    
-00002523  I2C0_IRQHandler                      
-00002523  I2C1_IRQHandler                      
-00002523  NMI_Handler                          
-00002523  PendSV_Handler                       
-00002523  RTC_IRQHandler                       
-00002523  SPI0_IRQHandler                      
-00002523  SPI1_IRQHandler                      
-00002523  SVC_Handler                          
-00002523  SysTick_Handler                      
-00002523  TIMG0_IRQHandler                     
-00002523  TIMG12_IRQHandler                    
-00002523  TIMG6_IRQHandler                     
-00002523  TIMG7_IRQHandler                     
-00002523  TIMG8_IRQHandler                     
-00002523  UART0_IRQHandler                     
-00002523  UART2_IRQHandler                     
-00002523  UART3_IRQHandler                     
+00002523  __aeabi_idiv0                        
 00002525  SYSCFG_DL_PWM_MOTOR_init             
 000025b9  Motor_Velocity_PID_Work              
 00002649  __aeabi_fmul                         
@@ -699,7 +701,6 @@ address   name
 00002c05  __aeabi_dcmple                       
 00002c19  __aeabi_dcmpge                       
 00002c2d  __aeabi_dcmpgt                       
-00002c3f  __aeabi_idiv0                        
 00002c41  __aeabi_fcmpeq                       
 00002c55  __aeabi_fcmplt                       
 00002c69  __aeabi_fcmple                       
